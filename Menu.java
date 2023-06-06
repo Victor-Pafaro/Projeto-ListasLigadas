@@ -6,7 +6,7 @@ public class Menu {
 
         System.out.println();
         System.out.println("******************** MENU ************************** ");
-        System.out.println("(a) Inserir um Aeroporto ");
+        System.out.println("(a) Cadastrar um Aeroporto ");
         System.out.println("(b) Cadastrar um Voo ");
         System.out.println("(c) Remover um vôo");
         System.out.println("(d) Listar vôos de um Aeroporto");

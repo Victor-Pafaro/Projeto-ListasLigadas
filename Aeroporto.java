@@ -78,9 +78,11 @@ public class Aeroporto implements Cloneable{
 
     /*Como eu queria a remoção
     public void removaVoo(Voo voo) throws Exception {
-        listaDeVoos.removaItemIndicado(voo);
+        this.listaDeVoos.removaItemIndicado(voo);
     }
+
      */
+
 
     public void removaUmVoo(ListaSimplesDesordenada<Voo>listaVoos, int numVoo)throws Exception{
 
@@ -173,7 +175,7 @@ public class Aeroporto implements Cloneable{
         //this.indiceAeroporto = modelo.indiceAeroporto;
         this.nomeCidade = modelo.nomeCidade;
         this.codigoAeroporto = modelo.codigoAeroporto;
-        this.listaDeVoos  = modelo.listaDeVoos;
+        this.listaDeVoos  = (ListaSimplesDesordenada<Voo>) modelo.listaDeVoos.clone();
     }
     public Object clone ()
     {

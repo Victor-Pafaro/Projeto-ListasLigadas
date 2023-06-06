@@ -10,7 +10,15 @@ public class Voos {
         ListaSimplesDesordenada<Aeroporto> listaCopia1 = (ListaSimplesDesordenada<Aeroporto>) Aeroportos.listaDeAeroportos.clone();
         ListaSimplesDesordenada<Aeroporto> listaCopia2 = (ListaSimplesDesordenada<Aeroporto>) Aeroportos.listaDeAeroportos.clone();
 
-        System.out.println("**************** Cadastro de Aeroporto  *****************");
+        System.out.println("**************** Cadastro de Vôo  *****************");
+        System.out.println();
+
+        System.out.println("Aeroportos:");
+
+        for (int d =0; d<Aeroportos.listaDeAeroportos.getQuantidade(); d++) {
+            System.out.print("Codigo: " + Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto() + " | " + "Cidade: " + Aeroportos.listaDeAeroportos.getIezimo(d).getNomeCidade() + "\n");
+        }
+
         System.out.println();
 
         System.out.println("Digite o codigo do Aeroporto que voce deseja inserir um voo:");
@@ -31,9 +39,28 @@ public class Voos {
             listaCopia1.removaItemDoInicio();
             i++;
             if(i==Aeroportos.listaDeAeroportos.getQuantidade()){
-                throw new Exception("Nao foi encontrado um aeroporto com este codigo");
+                throw new Exception("Nao foi encontrado um Aeroporto com este código!");
             }
         }
+
+
+
+        if (aeroportoTeste.qtdDeVoos() ==0){
+            System.out.println("Ainda não há nenhum vôo cadastrado neste Aeroporto.");
+            System.out.println();
+        }else {
+            System.out.println("Vôos do Aeroporto " + aeroportoTeste.getCodigoAeroporto() + ":");
+            for (int d =0; d< aeroportoTeste.qtdDeVoos(); d++) {
+                if (d == aeroportoTeste.qtdDeVoos()-1) {
+                    System.out.print("Numero do voo: " + aeroportoTeste.getListaDeVoos().getIezimo(d).getNumeroDoVoo() + " | Código Aeroporto Destino: " + aeroportoTeste.getListaDeVoos().getIezimo(d).getCodAeroDestino());
+                    break;
+                }
+                System.out.print(aeroportoTeste.getListaDeVoos().getIezimo(d).getNumeroDoVoo() + " | ");
+            }
+        }
+
+
+        System.out.println();
 
         System.out.println("Insira o numero do Vôo:");
         numDoVoo = Teclado.getUmInt();
@@ -83,7 +110,7 @@ public class Voos {
             b++;
 
             if(b==Aeroportos.listaDeAeroportos.getQuantidade())
-                throw new Exception("Nao foi encontrado um aeroporto com este codigo");
+                throw new Exception("Nao foi encontrado um Aeroporto com este código!");
 
         }
 
@@ -92,16 +119,17 @@ public class Voos {
 
         Voo v1 = new Voo(numDoVoo, aeroporto2.getCodigoAeroporto()/*getIndiceAeroporto()*/);
 
-        Aeroportos.insereVoo(aeroporto1, v1);
+        Aeroportos.listaDeAeroportos.recupereItemIndicado(aeroporto1).getListaDeVoos().guardeUmItemNoFinal(v1);
 
-        System.out.println("Voo cadastrado com sucesso!");
+        //Aeroportos.insereVoo(aeroporto1, v1);
+
+        System.out.println("Vôo cadastrado com sucesso!");
 
         System.out.println();
 
-        System.out.println("******************** Lista de Vôos ********************");
+        //System.out.println("******************** Lista de Vôos ********************");
 
-        System.out.println(Aeroportos.listaDeAeroportos);
-
+       // System.out.println(Aeroportos.listaDeAeroportos);
 
 
     }
@@ -121,6 +149,18 @@ public class Voos {
         System.out.println("**************** Remoção de Vôo  *****************");
         System.out.println();
 
+        System.out.println("Código dos Aeroportos cadastrados até este momento:");
+        for (int d =0; d<Aeroportos.listaDeAeroportos.getQuantidade(); d++) {
+            if (d == Aeroportos.listaDeAeroportos.getQuantidade()-1) {
+                System.out.print(Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto());
+                break;
+            }
+            System.out.print(Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto() + " | ");
+        }
+
+        System.out.println();
+        System.out.println();
+
         System.out.println("Digite o codigo do Aeroporto que voce deseja remover um Vôo:");
         codAeroporto = Teclado.getUmString();
         codAeroporto = codAeroporto.toUpperCase();
@@ -130,9 +170,11 @@ public class Voos {
         }
 
 
+        Aeroporto aeroporto1 = null;
         int i=0;
         while (i<Aeroportos.listaDeAeroportos.getQuantidade()){
             if (listaCopia1.recupereItemDoInicio().getCodigoAeroporto().equals(codAeroporto)) {
+                aeroporto1 = listaCopia1.recupereItemDoInicio();
                 break;
             }
             listaCopia1.removaItemDoInicio();
@@ -142,6 +184,24 @@ public class Voos {
             }
         }
 
+        System.out.println();
+
+        if(aeroporto1.qtdDeVoos()==0) {
+            throw new Exception("Ainda não há nenhum Vôo cadastrado neste Aeroporto!");
+        }
+
+
+        System.out.println("Vôos do Aeroporto " + aeroporto1.getCodigoAeroporto() + ":");
+        for (int d =0; d< aeroporto1.qtdDeVoos(); d++) {
+            if (d == aeroporto1.qtdDeVoos()-1) {
+                System.out.print("Numero do voo: " + aeroporto1.getListaDeVoos().getIezimo(d).getNumeroDoVoo() + " | Código Aeroporto Destino: " + aeroporto1.getListaDeVoos().getIezimo(d).getCodAeroDestino());
+                break;
+            }
+            System.out.print(aeroporto1.getListaDeVoos().getIezimo(d).getNumeroDoVoo() + " | ");
+        }
+
+        System.out.println();
+        System.out.println();
         System.out.println("Digite o numero do Vôo que você deseja remover: ");
         numDoVoo = Teclado.getUmInt();
 
@@ -153,12 +213,12 @@ public class Voos {
 
         Voo v1 = null;
 
-        Aeroporto aeroporto = null;
+        Aeroporto aeroporto2 = null;
 
         for(int a=0; a< Aeroportos.listaDeAeroportos.getQuantidade(); a++){
             if(v1==null){
                 v1 = listaCopia2.recupereItemDoInicio().getListaDeVoos().recupereItemIndicado(voo);
-                aeroporto = listaCopia2.recupereItemDoInicio();
+                aeroporto2 = listaCopia2.recupereItemDoInicio();
             }
             if(v1!=null){
                 break;
@@ -170,17 +230,20 @@ public class Voos {
             throw new Exception("Numero de Vôo inexistente!!!");
         }
 
-        //Como eu queria: Aeroportos.removaVoo(aeroporto,v1);
+        //Aeroportos.removaVoo(aeroporto,v1);
 
-        Aeroportos.listaDeAeroportos.removaItemIndicado(aeroporto);
 
-        aeroporto.removaUmVoo(aeroporto.getListaDeVoos(),numDoVoo);
+        Aeroportos.listaDeAeroportos.removaItemIndicado(aeroporto2);
 
-        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroporto);
+        aeroporto2.removaUmVoo(aeroporto2.getListaDeVoos(),numDoVoo);
+
+        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroporto2);
+
+        //System.out.println(Aeroportos.listaDeAeroportos);
 
         System.out.println("Vôo removido com sucesso!");
 
-        //System.out.println(Aeroportos.listaDeAeroportos);
+
 
     }
 
@@ -193,6 +256,18 @@ public class Voos {
         ListaSimplesDesordenada<Aeroporto> listaCopia2 = (ListaSimplesDesordenada<Aeroporto>) Aeroportos.listaDeAeroportos.clone();
 
         System.out.println("****************  Listagem de Voos *************");
+        System.out.println();
+
+        System.out.println("Código dos Aeroportos cadastrados até este momento:");
+        for (int d =0; d<Aeroportos.listaDeAeroportos.getQuantidade(); d++) {
+            if (d == Aeroportos.listaDeAeroportos.getQuantidade()-1) {
+                System.out.print(Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto());
+                break;
+            }
+            System.out.print(Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto() + " | ");
+        }
+
+        System.out.println();
         System.out.println();
 
         System.out.println("Digite o código do Aeroporto que voce deseja listar os vôos: ");
@@ -227,7 +302,9 @@ public class Voos {
                 aeroporto = aeroporto2;
 
             if (qtdVoos == 0) {
-                ret += "O Aeroporto " + aeroporto.getCodigoAeroporto() + " não tem nenhum Voo cadastrado no momento!";
+                ret += "O Aeroporto " + aeroporto.getCodigoAeroporto() + " não tem nenhum Vôo cadastrado no momento!";
+                System.out.println();
+                System.out.println(aeroporto);
                 return ret;
             }
 
@@ -275,9 +352,11 @@ public class Voos {
                 }
             }
 
-            System.out.println("Listagem de Vôos do Aeroporto: " + aeroporto.getNomeCidade());
+            System.out.println();
+
+            System.out.println("Listagem de Vôos do Aeroporto: " + aeroporto.getCodigoAeroporto());
             for (int d = 0; d < qtdVoos; d++) {
-                ret += "Numero do voo: " + numerosVoo[d] + " | Nome da Cidade Destino: " + nomesAeroDestino[d] + "\n";
+                ret += "Numero do Vôo: " + numerosVoo[d] + " | Cidade Destino: " + nomesAeroDestino[d] + "\n";
             }
 
         return ret;

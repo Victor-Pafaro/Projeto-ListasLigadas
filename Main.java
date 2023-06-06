@@ -45,13 +45,13 @@ public class Main {
 
         Aeroporto aeroSalvador = new Aeroporto("SALVADOR","SSA", listaVooSalvador);
 
-        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroBrasilia);
-        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroBH);
-        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroRio);
-        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroSP);
-        Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroSalvador);
+        //Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroBrasilia);
+        //Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroBH);
+        //Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroRio);
+        //Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroSP);
+        //Aeroportos.listaDeAeroportos.guardeUmItemNoFinal(aeroSalvador);
 
-        System.out.println(Aeroportos.listaDeAeroportos);
+        //System.out.println(Aeroportos.listaDeAeroportos);
 
 
         char opcao = ' ';
@@ -100,10 +100,10 @@ public class Main {
                         break;
                     }
 
-                case 'f':
+                case 'e':
                     try {
-                        System.out.println(Aeroportos.listaDeAeroportos);
-                        break;
+                        System.out.println("Até mais!");
+                        System.exit(0);
                     }catch (Exception e){
                         System.err.println(e.getMessage());
                         System.err.flush();

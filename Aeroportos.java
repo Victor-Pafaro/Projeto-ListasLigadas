@@ -8,11 +8,22 @@ public class Aeroportos {
 
     public static void cadastraAeroporto()throws Exception{
 
-        ListaSimplesDesordenada<Aeroporto> listaCopia1 = (ListaSimplesDesordenada<Aeroporto>) listaDeAeroportos.clone();
+        //ListaSimplesDesordenada<Aeroporto> listaCopia1 = (ListaSimplesDesordenada<Aeroporto>) listaDeAeroportos.clone();
         ListaSimplesDesordenada<Aeroporto> listaCopia2 = (ListaSimplesDesordenada<Aeroporto>) listaDeAeroportos.clone();
 
 
         System.out.println("*************** Cadastro de Aeroporto *****************");
+        System.out.println();
+
+        if(Aeroportos.listaDeAeroportos.getQuantidade() != 0){
+            System.out.println("Aeroportos cadastrados:");
+
+            for (int d =0; d<Aeroportos.listaDeAeroportos.getQuantidade(); d++) {
+                System.out.print("Codigo: " + Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto() + " | " + "Cidade: " + Aeroportos.listaDeAeroportos.getIezimo(d).getNomeCidade() + "\n");
+            }
+        }
+
+
         System.out.println();
 
         /*
@@ -64,9 +75,8 @@ public class Aeroportos {
 
         listaDeAeroportos.guardeUmItemNoFinal(aeroporto);
 
-        System.out.println("**************** Lista de Aeroportos *****************");
-        System.out.println(listaDeAeroportos);
-
+        //System.out.println("**************** Lista de Aeroportos *****************");
+        //System.out.println(listaDeAeroportos);
 
     }
 
@@ -98,10 +108,10 @@ public class Aeroportos {
         //a1.getListaDeVoos().guardeUmItemNoFinal(v1);
         a1.getListaDeVoos().guardeUmItemNoFinal(v1);
 
-
     }
 
-    /* Como eu queria a remoção
+    // Como eu queria a remoção
+    /*
     public static void removaVoo(Aeroporto a1, Voo v1) throws Exception {
         if(a1 == null)
             throw new Exception("Aeroporto nao pode ser nulo!");
@@ -111,7 +121,9 @@ public class Aeroportos {
 
         a1.removaVoo(v1);
     }
+
      */
+
 
     public void excluiAeroporto(){
 
