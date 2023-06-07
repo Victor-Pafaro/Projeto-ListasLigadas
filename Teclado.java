@@ -68,7 +68,7 @@ public class Teclado
         {} // sei que nao vai dar erro
         catch (NumberFormatException erro)
         {
-            throw new Exception ("Int invalido!");
+            throw new Exception ("Numero invalido!");
         }
 
         return ret;
@@ -143,11 +143,15 @@ public class Teclado
         {
             String str = teclado.readLine ();
 
+            if(str.equals(""))
+                throw new Exception("Opcao vazia!");
+
             if (str==null)
-                throw new Exception ("Char invalido!");
+                throw new Exception ("Caractere invalido!");
 
             if (str.length() != 1)
-                throw new Exception ("Char invalido!");
+                throw new Exception ("Você digitou mais de um caractere!");
+
 
             ret = str.charAt(0);
         }

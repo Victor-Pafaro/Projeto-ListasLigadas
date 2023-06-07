@@ -7,6 +7,10 @@ public class Voos {
     static int numDoVoo;
     public static void cadastraVoo() throws Exception {
 
+        if(Aeroportos.listaDeAeroportos.getQuantidade()==0){
+            throw new Exception("No momento não há Aeroportos cadastrados para realizar o cadastro de um Vôo!");
+        }
+
         ListaSimplesDesordenada<Aeroporto> listaCopia1 = (ListaSimplesDesordenada<Aeroporto>) Aeroportos.listaDeAeroportos.clone();
         ListaSimplesDesordenada<Aeroporto> listaCopia2 = (ListaSimplesDesordenada<Aeroporto>) Aeroportos.listaDeAeroportos.clone();
 
@@ -14,6 +18,7 @@ public class Voos {
         System.out.println();
 
         System.out.println("Aeroportos:");
+
 
         for (int d =0; d<Aeroportos.listaDeAeroportos.getQuantidade(); d++) {
             System.out.print("Codigo: " + Aeroportos.listaDeAeroportos.getIezimo(d).getCodigoAeroporto() + " | " + "Cidade: " + Aeroportos.listaDeAeroportos.getIezimo(d).getNomeCidade() + "\n");
@@ -141,6 +146,9 @@ public class Voos {
     }
 
     public static void removaVoo() throws Exception {
+        if(Aeroportos.listaDeAeroportos.getQuantidade()==0){
+            throw new Exception("No momento não há Aeroportos cadastrados para realizar o cadastro de um Vôo!");
+        }
 
         ListaSimplesDesordenada<Aeroporto> listaCopia1 = (ListaSimplesDesordenada<Aeroporto>) Aeroportos.listaDeAeroportos.clone();
 
@@ -248,6 +256,10 @@ public class Voos {
     }
 
     public static String listaVoos() throws Exception {
+
+        if(Aeroportos.listaDeAeroportos.getQuantidade()==0){
+            throw new Exception("No momento não há Aeroportos cadastrados para realizar o cadastro de um Vôo!");
+        }
 
         String ret = "";
 

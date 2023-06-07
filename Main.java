@@ -57,8 +57,12 @@ public class Main {
         char opcao = ' ';
 
         do{
-            opcao = Menu.mostraMenu();
-
+            try {
+                opcao = Menu.mostraMenu();
+            }catch (Exception e){
+                System.err.println(e.getMessage());
+                System.err.flush();
+            }
             switch (opcao){
                 case 'a':
                 try{
@@ -109,7 +113,8 @@ public class Main {
                         System.err.flush();
                         break;
                     }
-
+                default:
+                    System.err.println("Por favor, digite alguma opção que esteja no menu!");
             }
 
         }while (opcao!='e');
